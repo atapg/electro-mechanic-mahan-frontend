@@ -12,10 +12,9 @@
     </header>
     <nav>
       <ul>
-        <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/">Home</NuxtLink></li>
-        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li v-for="nav in nav_items" :key="nav.index">
+          <NuxtLink :to="nav.url">{{ nav.title }}</NuxtLink>
+        </li>
       </ul>
     </nav>
   </div>
@@ -27,6 +26,7 @@ export default {
     return {
       phone: this.$store.state.siteInfo.phone,
       logo: this.$store.state.siteInfo.logo,
+      nav_items: this.$store.state.siteInfo.nav_items,
     }
   },
 }
