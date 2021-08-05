@@ -15,6 +15,8 @@ export const state = () => ({
     telegram: '+9831231',
     whatsapp: '+38247329842',
     logo: 'https://mindbodyshe.com/wp-content/uploads/2018/07/samples-of-logo-designs-sample-of-company-logo-design-ngo-logo-design-samples.jpg',
+    hero_bg:
+      'https://www.accurl.com/wp-content/uploads/2018/03/6-Axis-CNC-Hydraulic-Press-Brake-Bending-Machine.jpg',
   },
 })
 

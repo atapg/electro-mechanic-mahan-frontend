@@ -12,10 +12,10 @@
     </header>
     <nav>
       <ul>
-        <li>Home</li>
-        <li>Home</li>
-        <li>Home</li>
-        <li>Home</li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
+        <li><NuxtLink to="/">Home</NuxtLink></li>
       </ul>
     </nav>
   </div>
@@ -51,7 +51,7 @@ export default {
       background-color: $white;
       -webkit-clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 10% 100%);
       clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 10% 100%);
-      padding-right: 20px;
+      padding-right: $spacing;
 
       img {
         width: 90px;
@@ -75,7 +75,27 @@ export default {
   }
 
   nav {
-    background-color: green;
+    background-color: $light_grey;
+    ul {
+      display: flex;
+      list-style-type: none;
+      padding: 0 $spacing;
+
+      li {
+        margin-left: 15px;
+        padding: 10px 0 10px 10px;
+
+        & > * {
+          text-decoration: none;
+          color: $black;
+          transition: 0.3s all ease;
+
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
   }
 }
 </style>
