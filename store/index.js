@@ -10,10 +10,13 @@ export const state = () => ({
     lastName: 'dasdada',
     email: 'atatiata@gmailc.om',
     title: 'ELECTRO MECHANIC MAHAN',
-    brand: 'electro mechanic mahan',
-    instagram: '@aisjdiaa',
-    telegram: '+9831231',
-    whatsapp: '+38247329842',
+    brand: 'Electro mechanic mahan',
+    brandPer: 'الکترو مکانیک ماهان',
+    socials: [
+      { info: '@aisjdiaa', icon: 'mdi-instagram' },
+      { info: '+9831231', icon: 'mdi-whatsapp' },
+      { info: '+38247329842', icon: 'mdi-telegram' },
+    ],
     logo: 'https://mindbodyshe.com/wp-content/uploads/2018/07/samples-of-logo-designs-sample-of-company-logo-design-ngo-logo-design-samples.jpg',
     hero_bg:
       'https://www.accurl.com/wp-content/uploads/2018/03/6-Axis-CNC-Hydraulic-Press-Brake-Bending-Machine.jpg',
@@ -23,7 +26,11 @@ export const state = () => ({
       { title: 'Services', url: '/ser' },
       { title: 'Login', url: '/lo' },
     ],
-    typings: ['الکترو مکانیک ماهان', 'lorem isdaji adijsja'],
+    typings: [
+      'الکترو مکانیک ماهان',
+      'ساخت انواع دستگاه های پرس داغی و هیدرولیکی',
+      'ساخت انواع دستگاه های چاپ',
+    ],
   },
 })
 
