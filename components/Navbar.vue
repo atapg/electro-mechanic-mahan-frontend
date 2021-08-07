@@ -1,5 +1,5 @@
 <template>
-  <div class="container center flex-col">
+  <div class="navbar-container center flex-col">
     <header class="center">
       <div class="logo">
         <img :src="logo" alt="logo" />
@@ -33,9 +33,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
-  width: 100%;
-
+.navbar-container {
   & > * {
     width: 100%;
   }

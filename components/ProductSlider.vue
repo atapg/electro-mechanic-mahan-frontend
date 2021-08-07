@@ -1,12 +1,14 @@
 <template>
-  <div class="mb-5 container">
+  <div class="mb-5 carousel-section-container">
+    <div class="carousel-title title">محصولات ما</div>
     <carousel
-      :per-page="4"
+      :perPage="4"
       :autoplay="true"
       :autoplay-timeout="5000"
       :loop="true"
       :centerMode="true"
-      autoplayDirection="backward"
+      autoplayDirection="forward"
+      class="carousel-container"
     >
       <slide
         v-for="product in 10"
@@ -48,41 +50,53 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container {
+.carousel-section-container {
   direction: ltr;
   padding: 0 $spacing / 2;
 
-  .slide {
-    display: flex;
-    align-content: center;
-    margin: 10px 0;
+  .carousel-title {
+    text-align: right;
+    margin-right: $spacing / 2;
+    padding: 0 15px;
+    border-right: 5px solid $primary;
+  }
 
-    .slider-container {
-      padding: 0 $spacing / 2;
+  .carousel-container {
+    margin-top: 10px;
 
-      .items {
-        padding: 10px;
-        text-align: right;
+    .slide {
+      display: flex;
+      align-content: center;
+      margin: 10px 0;
 
-        .title {
-          line-height: 17px;
-          color: $black;
-        }
+      .slider-container {
+        padding: 0 $spacing / 2;
 
-        .description {
-          line-height: 17px;
-          color: $description;
-        }
+        .items {
+          padding: 5px 10px;
+          text-align: right;
 
-        .action {
-          text-align: left;
+          .title {
+            line-height: 17px;
+            color: $black;
+          }
+
+          .description {
+            line-height: 17px;
+            color: $description;
+          }
+
+          .action {
+            text-align: left;
+            margin-bottom: 5px;
+          }
         }
       }
-    }
 
-    .image {
-      margin: auto;
-      width: 100%;
+      .image {
+        margin: auto;
+        width: 100%;
+      }
     }
   }
 }

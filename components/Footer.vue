@@ -1,6 +1,6 @@
 <template>
   <v-footer v-bind="localAttrs" :padless="true">
-    <v-card flat tile width="100%" class="primary lighten-1 text-center">
+    <v-card flat tile width="100%" class="primary text-center">
       <v-card-text>
         <v-btn
           v-for="social in socials"
