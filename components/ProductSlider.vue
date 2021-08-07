@@ -24,9 +24,9 @@
               </div>
               <div class="subtitle-2 description"></div>
               <div class="action">
-                <v-btn @click="goToProductsPage(product._id)" color="primary"
-                  >مشاهده محصول</v-btn
-                >
+                <NuxtLink :to="`/products/${product._id}`">
+                  <v-btn color="primary">مشاهده محصول</v-btn>
+                </NuxtLink>
               </div>
             </div>
           </v-card>
@@ -68,11 +68,6 @@ export default {
     if (this.xs.matches) {
       this.perPage = 1
     }
-  },
-  methods: {
-    goToProductsPage(id) {
-      this.$router.push(`/products/${id}`)
-    },
   },
 }
 </script>

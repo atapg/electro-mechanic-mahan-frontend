@@ -38,7 +38,9 @@
             </v-col>
           </v-row>
           <div class="actions-container">
-            <v-btn color="primary">مشاهده محصول</v-btn>
+            <NuxtLink :to="`/products/${product._id}`">
+              <v-btn color="primary">مشاهده محصول</v-btn>
+            </NuxtLink>
           </div>
         </v-card>
       </v-col>
