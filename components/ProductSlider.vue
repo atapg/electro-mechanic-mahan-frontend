@@ -2,7 +2,7 @@
   <div class="mb-5 carousel-section-container">
     <div class="carousel-title title">محصولات ما</div>
     <carousel
-      :perPage="4"
+      :perPage="perPage"
       :autoplay="true"
       :autoplay-timeout="5000"
       :loop="true"
@@ -27,7 +27,9 @@
               </div>
               <div class="subtitle-2 description"></div>
               <div class="action">
-                <v-btn color="primary">مشاهده محصول</v-btn>
+                <v-btn color="primary" @click="() => (perPage = 1)"
+                  >مشاهده محصول</v-btn
+                >
               </div>
             </div>
           </v-card>
@@ -39,13 +41,36 @@
 
 <script>
 import { Carousel, Slide } from 'vue-carousel'
+
 export default {
   data() {
-    return {}
+    return {
+      perPage: 4,
+      xl: window.matchMedia('(min-width: 1904px)'),
+      lg: window.matchMedia('(max-width: 1903px)'),
+      md: window.matchMedia('(max-width: 1264px)'),
+      sm: window.matchMedia('(max-width: 960px)'),
+      xs: window.matchMedia('(max-width: 600px)'),
+    }
   },
   components: { Carousel, Slide },
-  methods: {},
-  mounted() {},
+  mounted() {
+    if (this.xl.matches) {
+      this.perPage = 5
+    }
+    if (this.lg.matches) {
+      this.perPage = 4
+    }
+    if (this.md.matches) {
+      this.perPage = 3
+    }
+    if (this.sm.matches) {
+      this.perPage = 2
+    }
+    if (this.xs.matches) {
+      this.perPage = 1
+    }
+  },
 }
 </script>
 

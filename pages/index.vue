@@ -10,7 +10,7 @@
       <v-container>
         <v-row>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card height="400" class="contact" elevation="1" tile>
+            <v-card height="400" class="contact" elevation="1">
               <v-card-title> ارتباط با ما از طریق ایمیل </v-card-title>
               <v-card-text>
                 <v-text-field
@@ -30,8 +30,8 @@
             </v-card>
           </v-col>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card class="contact" elevation="1" tile>
-              <v-card height="400" class="contact" elevation="1" tile>
+            <v-card class="contact" elevation="1">
+              <v-card height="400" class="contact" elevation="1">
                 <v-card-title>
                   ارتباط با ما از طریق شبکه های اجتماعی
                 </v-card-title>

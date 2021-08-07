@@ -1,9 +1,11 @@
 <template>
-  <v-app>
-    <Navbar />
-    <nuxt />
-    <Footer />
-  </v-app>
+  <div class="home-container">
+    <v-app>
+      <Navbar />
+      <nuxt />
+      <Footer />
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -17,3 +19,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.home-container {
+  max-width: 2000px;
+  margin: auto;
+}
+</style>
