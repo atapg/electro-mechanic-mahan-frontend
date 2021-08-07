@@ -7,7 +7,7 @@
       <div class="call-section flex">
         <v-icon>mdi-phone</v-icon>
         <v-divider vertical></v-divider>
-        <div class="subtitle-1 phone">0{{ phone }}</div>
+        <div class="subtitle-1 phone">{{ phone }}</div>
       </div>
     </header>
     <nav>

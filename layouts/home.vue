@@ -17,6 +17,18 @@ export default {
     Navbar,
     Footer,
   },
+  mounted() {
+    //get site info
+    this.$axios({
+      method: 'GET',
+      url: '/public',
+    })
+      .then(({ data }) => {
+        this.$store.commit('addSiteInfo', data)
+        this.$forceUpdate()
+      })
+      .catch((err) => {})
+  },
 }
 </script>
 

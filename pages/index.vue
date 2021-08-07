@@ -10,7 +10,7 @@
       <v-container>
         <v-row>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card height="400" class="contact" elevation="1">
+            <v-card min-height="400" class="contact" elevation="1">
               <v-card-title> ارتباط با ما از طریق ایمیل </v-card-title>
               <v-card-text>
                 <v-text-field
@@ -31,7 +31,7 @@
           </v-col>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
             <v-card class="contact" elevation="1">
-              <v-card height="400" class="contact" elevation="1">
+              <v-card min-height="400" class="contact" elevation="1">
                 <v-card-title>
                   ارتباط با ما از طریق شبکه های اجتماعی
                 </v-card-title>
@@ -80,17 +80,6 @@ export default {
     },
   },
   mounted() {
-    //get site info
-    this.$axios({
-      method: 'GET',
-      url: '/public',
-    })
-      .then(({ data }) => {
-        this.$store.commit('addSiteInfo', data)
-        this.$forceUpdate()
-      })
-      .catch((err) => {})
-
     //get products
     this.$axios({
       method: 'GET',
@@ -98,7 +87,6 @@ export default {
     })
       .then(({ data }) => {
         this.products = data
-        console.log(data)
       })
       .catch((err) => {})
   },
