@@ -1,44 +1,38 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+  <div class="notfound-container center">
+    <v-card elevation="2" class="card">
+      <p class="title">404</p>
+      <p class="desc">! صفحه مورد نظر پیدا نشد</p>
+      <NuxtLink to="/"><p class="return">برگشت به صفحه اصلی</p></NuxtLink>
+    </v-card>
+  </div>
 </template>
 
 <script>
-export default {
-  layout: 'empty',
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
-  },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
-    }
-  }
-}
+export default {}
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
+<style lang="scss" scoped>
+.notfound-container {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  .card {
+    padding: $spacing;
+
+    .title {
+      font-size: 5vw;
+      margin-bottom: 20px;
+    }
+
+    .desc {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .return {
+      color: $primary;
+    }
+  }
 }
 </style>

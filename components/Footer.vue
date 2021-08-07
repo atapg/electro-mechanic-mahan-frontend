@@ -3,15 +3,18 @@
     <v-card flat tile width="100%" class="primary text-center">
       <v-card-text>
         <v-btn
-          v-for="social in socials"
-          :to="social.info"
-          :key="social"
-          class="mx-4"
-          icon
+          v-for="link in links"
+          :to="link.url"
+          :key="link.index"
+          color="white"
+          text
+          rounded
+          class="my-2 ml-2 mr-2"
         >
-          <v-icon size="24px" class="white--text">
-            {{ social.icon }}
-          </v-icon>
+          <div class="overline">{{ link.title }}</div>
+        </v-btn>
+        <v-btn to="/login" color="white" text rounded class="my-2 ml-2 mr-2">
+          <div class="overline">ورود</div>
         </v-btn>
       </v-card-text>
 
@@ -30,7 +33,7 @@ export default {
   data() {
     return {
       brand: this.$store.state.siteInfo.brandPer,
-      socials: this.$store.state.siteInfo.socials,
+      links: this.$store.state.siteInfo.nav_items,
     }
   },
 }

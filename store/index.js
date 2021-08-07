@@ -21,10 +21,14 @@ export const state = () => ({
     hero_bg:
       'https://www.accurl.com/wp-content/uploads/2018/03/6-Axis-CNC-Hydraulic-Press-Brake-Bending-Machine.jpg',
     nav_items: [
-      { title: 'Home', url: '/' },
-      { title: 'About', url: '/about' },
-      { title: 'Services', url: '/ser' },
-      { title: 'Login', url: '/lo' },
+      {
+        title: 'خانه',
+        url: '/',
+      },
+      {
+        title: 'محصولات',
+        url: '/products',
+      },
     ],
     typings: [
       'الکترو مکانیک ماهان',

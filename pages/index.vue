@@ -64,11 +64,13 @@ import Hero from '/components/Hero.vue'
 import ProductSlider from '/components/ProductSlider.vue'
 
 export default {
+  layout: 'home',
   data() {
     return {
       socials: this.$store.state.siteInfo.socials,
     }
   },
+
   components: {
     Hero,
     ProductSlider,
