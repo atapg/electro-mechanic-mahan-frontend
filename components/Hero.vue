@@ -21,12 +21,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      typings: [
+        'الکترو مکانیک ماهان',
+        'ساخت انواع دستگاه های پرس داغی و هیدرولیکی',
+        'ساخت انواع دستگاه های چاپ',
+      ],
+    }
+  },
   computed: {
     hero_bg() {
       return this.$store.state.siteInfo.hero_bg
-    },
-    typings() {
-      return this.$store.state.siteInfo.typings
     },
   },
 }

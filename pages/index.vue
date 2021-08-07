@@ -2,7 +2,7 @@
   <div>
     <!-- Components -->
     <Hero />
-    <ProductSlider />
+    <ProductSlider :products="products" />
     <!-- Components -->
 
     <!-- Page specifics -->
@@ -65,6 +65,11 @@ import ProductSlider from '/components/ProductSlider.vue'
 
 export default {
   layout: 'home',
+  data() {
+    return {
+      products: [],
+    }
+  },
   components: {
     Hero,
     ProductSlider,
@@ -75,6 +80,7 @@ export default {
     },
   },
   mounted() {
+    //get site info
     this.$axios({
       method: 'GET',
       url: '/public',
@@ -82,7 +88,16 @@ export default {
       .then(({ data }) => {
         this.$store.commit('addSiteInfo', data)
         this.$forceUpdate()
-        console.log(this.$store.state.siteInfo)
+      })
+      .catch((err) => {})
+
+    //get products
+    this.$axios({
+      method: 'GET',
+      url: '/products',
+    })
+      .then(({ data }) => {
+        this.products = data
         console.log(data)
       })
       .catch((err) => {})

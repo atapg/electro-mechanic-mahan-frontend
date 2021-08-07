@@ -11,23 +11,20 @@
       class="carousel-container"
     >
       <slide
-        v-for="product in 10"
+        v-for="product in products"
         :key="product.index"
         class="slide center flex-col"
       >
         <div class="slider-image-container slider-container center">
           <v-card>
-            <img
-              src="https://lh3.googleusercontent.com/proxy/Qz1dTH27olRgWssGHdro1pok3jaY7IbCp62abIzFLBuMw5aoUf1tyVC9oJV9-FPqmMsbj681rtYcsU3kyCrACfy_2WRRUgnADbsUS205lTeeBow7rSfWJiFFp8TmlwPfVL9uWrt8B45PoexHvoE6zSMa"
-              class="image"
-            />
+            <img :src="product.images[0]" class="image" />
             <div class="items">
               <div class="subtitle-1 title mb-10">
-                سلام علیکم کفوز اخوالوز داداش لار نخبر یاخجیسور؟
+                {{ product.title }}
               </div>
               <div class="subtitle-2 description"></div>
               <div class="action">
-                <v-btn color="primary" @click="() => (perPage = 1)"
+                <v-btn @click="goToProductsPage(product._id)" color="primary"
                   >مشاهده محصول</v-btn
                 >
               </div>
@@ -53,6 +50,7 @@ export default {
       xs: window.matchMedia('(max-width: 600px)'),
     }
   },
+  props: ['products'],
   components: { Carousel, Slide },
   mounted() {
     if (this.xl.matches) {
@@ -70,6 +68,11 @@ export default {
     if (this.xs.matches) {
       this.perPage = 1
     }
+  },
+  methods: {
+    goToProductsPage(id) {
+      this.$router.push(`/products/${id}`)
+    },
   },
 }
 </script>
