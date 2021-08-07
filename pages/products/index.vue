@@ -1,9 +1,94 @@
 <template>
-  <div>products page all of them</div>
+  <div class="products-page-container mt-3 mb-10">
+    <v-row>
+      <v-col
+        v-for="product in products"
+        :key="product._id"
+        xl="4"
+        lg="4"
+        md="6"
+        sm="6"
+        cols="12"
+        class="mb-5"
+      >
+        <v-card height="500" class="card-container">
+          <v-row>
+            <v-col
+              xl="12"
+              lg="12"
+              md="12"
+              sm="12"
+              cols="12"
+              class="img-container"
+            >
+              <img :src="product.images[0]" :alt="product.title" />
+            </v-col>
+            <v-col
+              xl="12"
+              lg="12"
+              md="12"
+              sm="12"
+              cols="12"
+              class="info-container"
+            >
+              <v-card elevation="0">
+                <v-card-title>{{ product.title }}</v-card-title>
+                <v-card-text>{{ reduceDesc(product.description) }}</v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+          <div class="actions-container">
+            <v-btn color="primary">مشاهده محصول</v-btn>
+          </div>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  layout: 'home',
+  data() {
+    return {
+      products: [],
+    }
+  },
+  mounted() {
+    //get products
+    this.$axios({
+      method: 'GET',
+      url: '/products',
+    })
+      .then(({ data }) => {
+        this.products = data
+      })
+      .catch((err) => {})
+  },
+  methods: {
+    reduceDesc(desc) {
+      return desc.substring(150, 0)
+    },
+  },
+}
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.products-page-container {
+  padding: 0 $spacing;
+  .img-container img {
+    width: 100%;
+    height: 250px;
+  }
+
+  .card-container {
+    position: relative;
+
+    .actions-container {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+    }
+  }
+}
+</style>

@@ -2,7 +2,7 @@
   <div class="product-container my-5">
     <v-row v-if="this.product">
       <v-col xl="6" lg="6" md="6" sm="12" cols="12">
-        <v-card min-height="500" class="product-card">
+        <v-card min-height="550" class="product-card">
           <v-card-title class="mb-3 display-1">
             {{ product.title }}
           </v-card-title>
@@ -15,11 +15,12 @@
           </v-card-actions>
           <v-card-actions> وزن : {{ product.weight }} kg</v-card-actions>
           <v-card-actions> سرعت : {{ product.speed }} m/s</v-card-actions>
-          <v-card-actions> اندازه : {{ product.size }} </v-card-actions>
+          <v-card-actions> اندازه : {{ product.size }} متر مربع</v-card-actions>
+          <v-card-actions> قیمت : {{ product.price }} تومان</v-card-actions>
         </v-card>
       </v-col>
       <v-col xl="6" lg="6" md="6" sm="12" cols="12">
-        <v-card min-height="500" elevation="1" class="product-card">
+        <v-card min-height="550" elevation="1" class="product-card">
           <div class="image-section">
             <carousel
               :perPage="1"
