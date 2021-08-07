@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mb-5">
     <div class="img">
       <img :src="hero_bg" alt="electro_mechanic_mahan" />
       <div class="overlay" />
