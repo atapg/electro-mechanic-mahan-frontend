@@ -7,7 +7,7 @@
       <div class="call-section flex">
         <v-icon>mdi-phone</v-icon>
         <v-divider vertical></v-divider>
-        <div class="subtitle-1 phone">{{ phone }}</div>
+        <div class="subtitle-1 phone">0{{ phone }}</div>
       </div>
     </header>
     <nav>
@@ -22,12 +22,16 @@
 
 <script>
 export default {
-  data() {
-    return {
-      phone: this.$store.state.siteInfo.phone,
-      logo: this.$store.state.siteInfo.logo,
-      nav_items: this.$store.state.siteInfo.nav_items,
-    }
+  computed: {
+    phone() {
+      return this.$store.state.siteInfo.phone
+    },
+    logo() {
+      return this.$store.state.siteInfo.logo
+    },
+    nav_items() {
+      return this.$store.state.siteInfo.nav_items
+    },
   },
 }
 </script>

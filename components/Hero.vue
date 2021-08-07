@@ -21,11 +21,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      hero_bg: this.$store.state.siteInfo.hero_bg,
-      typings: this.$store.state.siteInfo.typings,
-    }
+  computed: {
+    hero_bg() {
+      return this.$store.state.siteInfo.hero_bg
+    },
+    typings() {
+      return this.$store.state.siteInfo.typings
+    },
   },
 }
 </script>

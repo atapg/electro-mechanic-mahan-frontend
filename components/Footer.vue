@@ -1,5 +1,5 @@
 <template>
-  <v-footer v-bind="localAttrs" :padless="true">
+  <v-footer :padless="true">
     <v-card flat tile width="100%" class="primary text-center">
       <v-card-text>
         <v-btn
@@ -30,11 +30,13 @@
 
 <script>
 export default {
-  data() {
-    return {
-      brand: this.$store.state.siteInfo.brandPer,
-      links: this.$store.state.siteInfo.nav_items,
-    }
+  computed: {
+    brand() {
+      return this.$store.state.siteInfo.brandPer
+    },
+    links() {
+      return this.$store.state.siteInfo.nav_items
+    },
   },
 }
 </script>

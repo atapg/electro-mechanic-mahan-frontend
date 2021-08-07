@@ -65,15 +65,27 @@ import ProductSlider from '/components/ProductSlider.vue'
 
 export default {
   layout: 'home',
-  data() {
-    return {
-      socials: this.$store.state.siteInfo.socials,
-    }
-  },
-
   components: {
     Hero,
     ProductSlider,
+  },
+  computed: {
+    socials() {
+      return this.$store.state.siteInfo.socials
+    },
+  },
+  mounted() {
+    this.$axios({
+      method: 'GET',
+      url: '/public',
+    })
+      .then(({ data }) => {
+        this.$store.commit('addSiteInfo', data)
+        this.$forceUpdate()
+        console.log(this.$store.state.siteInfo)
+        console.log(data)
+      })
+      .catch((err) => {})
   },
 }
 </script>
