@@ -81,20 +81,11 @@ export default {
           url: '/dashboard/add-product',
         },
         {
-          title: 'ویرایش محصول',
-          icon: 'mdi-pencil-box-multiple-outline',
-          url: '/',
+          title: 'لیست محصولات',
+          icon: 'mdi-format-list-bulleted',
+          url: '/dashboard/products-list',
         },
-        {
-          title: 'افزودن عکس به محصول',
-          icon: 'mdi-file-image-outline',
-          url: '/',
-        },
-        {
-          title: 'حذف محصول',
-          icon: 'mdi-delete-empty-outline',
-          url: '/',
-        },
+
         {
           title: 'تنظیمات سایت',
           icon: 'mdi-webhook',

@@ -13,8 +13,6 @@
           <v-stepper-step :complete="step > 2" step="2">
             افزودن عکس
           </v-stepper-step>
-          <v-divider></v-divider>
-          <v-stepper-step step="3"> پایان</v-stepper-step>
         </v-stepper-header>
 
         <v-stepper-items>
@@ -98,18 +96,6 @@
             </v-btn>
           </v-stepper-content>
           <!-- step 2 -->
-
-          <!-- step 3 -->
-          <v-stepper-content step="3">
-            <v-card elevation="0">
-              <v-card-title>محصول با موفقیت ذخیره شد!</v-card-title>
-              <v-card-text>
-                <v-btn color="primary">مشاهده محصول</v-btn>
-              </v-card-text>
-            </v-card>
-            <v-btn color="primary" to="/dashboard"> پایان </v-btn>
-          </v-stepper-content>
-          <!-- step 3 -->
         </v-stepper-items>
       </v-stepper>
     </v-card>
@@ -175,8 +161,6 @@ export default {
               })
             })
             .catch((err) => {
-              console.log(err)
-              console.log(err.response)
               this.$swal({
                 icon: 'error',
                 title: err.response.data.error,
@@ -185,8 +169,6 @@ export default {
             })
         })
         .catch((err) => {
-          console.log(err)
-          console.log(err.response)
           this.$swal({
             icon: 'error',
             title: err.response.data.error,
@@ -194,8 +176,7 @@ export default {
           })
         })
 
-      //next step
-      this.step = 3
+      this.$router.push('/dashboard/products-list')
     },
   },
 }

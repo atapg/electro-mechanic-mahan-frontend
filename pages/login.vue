@@ -84,7 +84,6 @@ export default {
         },
       })
         .then(({ data }) => {
-          console.log(data)
           this.$swal({
             icon: 'success',
             title: '!شما با موفقیت وارد شدید',
