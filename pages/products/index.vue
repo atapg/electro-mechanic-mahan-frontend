@@ -1,5 +1,8 @@
 <template>
-  <div class="products-page-container mt-3 mb-10">
+  <div class="products-page-container mt-10 mb-10">
+    <v-card elevation="0" class="my-10 mb-10">
+      <v-text-field label="جستجو" outlined v-model="search"></v-text-field>
+    </v-card>
     <v-row>
       <v-col
         v-for="product in products"
@@ -54,6 +57,7 @@ export default {
   data() {
     return {
       products: [],
+      search: '',
     }
   },
   mounted() {
@@ -72,16 +76,30 @@ export default {
       return desc.substring(150, 0)
     },
   },
+  watch: {
+    search() {
+      this.$axios({
+        method: 'GET',
+        url: `/products/search?search=${this.search}`,
+      })
+        .then(({ data }) => {
+          this.products = data
+        })
+        .catch((err) => {})
+    },
+  },
 }
 </script>
 
 <style scoped lang="scss">
 .products-page-container {
   padding: 0 $spacing;
-  overflow: hidden;
 
   .img-container {
     padding-top: 0;
+    border-radius: 4px;
+    overflow: hidden;
+
     img {
       width: 100%;
       height: 250px;

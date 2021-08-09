@@ -11,7 +11,7 @@
       <div class="wrapper">
         <v-row>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
-            <v-card class="card-container">
+            <v-card class="card-container" min-height="250">
               <v-card-title class="card-title">
                 ساخت انواع پرس های داغی و هیدرولیکی</v-card-title
               >
@@ -25,7 +25,7 @@
             </v-card>
           </v-col>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
-            <v-card class="card-container">
+            <v-card class="card-container" min-height="250">
               <v-card-title class="card-title"
                 >ساخت انواع دستگاه های برشی</v-card-title
               >
@@ -39,7 +39,7 @@
             </v-card>
           </v-col>
           <v-col xl="4" lg="4" md="4" sm="12" cols="12">
-            <v-card class="card-container">
+            <v-card class="card-container" min-height="250">
               <v-card-title class="card-title"
                 >ساخت انواع دستگاه های جلد زنی</v-card-title
               >
