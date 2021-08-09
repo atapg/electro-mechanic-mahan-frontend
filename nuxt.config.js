@@ -9,8 +9,8 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - electro-mechanic-mahan',
-    title: 'electro-mechanic-mahan',
+    titleTemplate: '%s - Electro Mechanic Mahan',
+    title: 'Electro Mechanic Mahan',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

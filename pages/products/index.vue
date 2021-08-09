@@ -1,6 +1,6 @@
 <template>
   <div class="products-page-container mt-5 mb-10">
-    <v-card elevation="0" class="my-10 mb-5">
+    <v-card elevation="0" class="mb-5">
       <v-text-field label="جستجو" outlined v-model="search"></v-text-field>
     </v-card>
     <v-row v-if="this.products.length > 0">
@@ -65,6 +65,11 @@ export default {
     return {
       products: [],
       search: '',
+    }
+  },
+  head() {
+    return {
+      title: 'محصولات',
     }
   },
   mounted() {

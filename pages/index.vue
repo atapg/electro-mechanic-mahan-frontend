@@ -119,6 +119,11 @@ export default {
       products: [],
     }
   },
+  head() {
+    return {
+      title: 'الکترو مکانیک ماهان',
+    }
+  },
   components: {
     Hero,
     ProductSlider,

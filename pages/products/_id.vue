@@ -43,6 +43,13 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-else>
+      <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+        <v-card>
+          <v-card-title>محصول مورد نظر وجود ندارد!</v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
     <v-card class="mt-5">
       <v-card-title>جهت خرید با ما در ارتباط باشید</v-card-title>
       <v-card-text>
@@ -93,6 +100,12 @@ export default {
   data() {
     return {
       product: null,
+      title: 'product',
+    }
+  },
+  head() {
+    return {
+      title: this.title,
     }
   },
   components: { Carousel, Slide },
@@ -107,6 +120,7 @@ export default {
     })
       .then(({ data }) => {
         this.product = data
+        this.title = data.title
       })
       .catch((err) => {})
   },

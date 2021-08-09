@@ -49,6 +49,11 @@ export default {
       password: null,
     }
   },
+  head() {
+    return {
+      title: 'ورود',
+    }
+  },
   mounted() {
     const token = Cookies.get('_token')
 
