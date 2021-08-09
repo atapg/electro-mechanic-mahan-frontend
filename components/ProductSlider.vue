@@ -1,6 +1,6 @@
 <template>
   <div class="mb-5 carousel-section-container">
-    <div class="carousel-title title">محصولات ما</div>
+    <div class="carousel-title title">برخی از محصولات ما</div>
     <carousel
       :perPage="perPage"
       :autoplay="true"

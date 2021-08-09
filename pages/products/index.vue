@@ -4,9 +4,9 @@
       <v-col
         v-for="product in products"
         :key="product._id"
-        xl="4"
+        xl="3"
         lg="4"
-        md="6"
+        md="4"
         sm="6"
         cols="12"
         class="mb-5"
@@ -63,7 +63,7 @@ export default {
       url: '/products',
     })
       .then(({ data }) => {
-        this.products = data
+        this.products = data.products
       })
       .catch((err) => {})
   },
@@ -78,9 +78,15 @@ export default {
 <style scoped lang="scss">
 .products-page-container {
   padding: 0 $spacing;
-  .img-container img {
-    width: 100%;
-    height: 250px;
+  overflow: hidden;
+
+  .img-container {
+    padding-top: 0;
+    img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
   }
 
   .card-container {
