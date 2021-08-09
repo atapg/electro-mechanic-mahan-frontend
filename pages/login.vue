@@ -49,6 +49,25 @@ export default {
       password: null,
     }
   },
+  mounted() {
+    const token = Cookies.get('_token')
+
+    if (token) {
+      this.$axios({
+        method: 'GET',
+        url: 'admins/authenticate',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => {
+          if (res.status === 200) {
+            this.$router.push('/dashboard')
+          }
+        })
+        .catch((err) => {})
+    }
+  },
   methods: {
     loginHandler() {
       this.$axios({

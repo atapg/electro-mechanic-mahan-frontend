@@ -3,6 +3,7 @@
     <!-- Components -->
     <Hero />
     <ProductSlider :products="products" />
+    <About />
     <!-- Components -->
 
     <!-- Page specifics -->
@@ -10,7 +11,7 @@
       <v-container>
         <v-row>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card min-height="400" class="contact" elevation="1">
+            <v-card min-height="400" class="contact">
               <v-card-title> ارتباط با ما از طریق ایمیل </v-card-title>
               <v-card-text>
                 <v-text-field
@@ -30,7 +31,7 @@
             </v-card>
           </v-col>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card class="contact" elevation="1">
+            <v-card class="contact">
               <v-card min-height="400" class="contact" elevation="1">
                 <v-card-title>
                   ارتباط با ما از طریق شبکه های اجتماعی
@@ -60,6 +61,7 @@
   </div>
 </template>
 <script>
+import About from '~/components/About.vue'
 import Hero from '/components/Hero.vue'
 import ProductSlider from '/components/ProductSlider.vue'
 
@@ -73,6 +75,7 @@ export default {
   components: {
     Hero,
     ProductSlider,
+    About,
   },
   computed: {
     socials() {
