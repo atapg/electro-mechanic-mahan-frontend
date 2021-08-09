@@ -137,13 +137,19 @@ export default {
 <style lang="scss" scoped>
 .dashboard-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   transition: 0.3s all ease;
   z-index: 10;
   display: flex;
+  position: relative;
 
   .sidebar-container {
-    height: 100vh;
+    height: 100%;
+    position: sticky;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
     .sidebar-title {
       padding: $spacing / 3;
     }
