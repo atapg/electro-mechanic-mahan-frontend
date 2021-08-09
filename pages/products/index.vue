@@ -1,9 +1,9 @@
 <template>
-  <div class="products-page-container mt-10 mb-10">
-    <v-card elevation="0" class="my-10 mb-10">
+  <div class="products-page-container mt-5 mb-10">
+    <v-card elevation="0" class="my-10 mb-5">
       <v-text-field label="جستجو" outlined v-model="search"></v-text-field>
     </v-card>
-    <v-row>
+    <v-row v-if="this.products.length > 0">
       <v-col
         v-for="product in products"
         :key="product._id"
@@ -48,6 +48,13 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-else>
+      <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+        <v-card>
+          <v-card-title>هیچ محصولی وجود ندارد!</v-card-title>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -86,6 +93,8 @@ export default {
           this.products = data
         })
         .catch((err) => {})
+
+      console.log(this.products)
     },
   },
 }
