@@ -84,9 +84,9 @@
           </v-card-text>
         </v-card>
       </v-card-text>
-      <div class="action">
-        <v-btn color="primary">ذخیره</v-btn>
-      </div>
+      <v-card-actions>
+        <v-btn @click="uploadNewImages" color="primary">ذخیره</v-btn>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -172,26 +172,70 @@ export default {
         })
     },
     deleteImage(img_url) {
+      this.$swal({
+        title: 'آیا از حذف عکس مطمئن هستید؟',
+        showCancelButton: true,
+        cancelButtonText: 'خیر',
+        confirmButtonText: 'بله',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$axios({
+            method: 'DELETE',
+            url: '/upload/images',
+            headers: {
+              Authorization: `Bearer ${Cookies.get('_token')}`,
+            },
+            data: {
+              img_url,
+              product_id: this.product._id,
+            },
+          })
+            .then(() => {
+              this.$swal({
+                icon: 'success',
+                title: 'عکس با موفقیت حذف شد!',
+                ...Toast,
+              })
+              this.getTheProduct()
+            })
+            .catch(() => {
+              this.$swal({
+                icon: 'error',
+                title: 'ناموفق',
+                ...Toast,
+              })
+              this.getTheProduct()
+            })
+        }
+      })
+    },
+    uploadNewImages() {
+      const imageData = new FormData()
+
+      for (let i = 0; i < this.images.length; i++) {
+        imageData.append(`images`, this.images[i])
+      }
+
       this.$axios({
-        method: 'DELETE',
-        url: '/upload/images',
+        method: 'POST',
+        url: `/upload/images/${this.product._id}`,
+        data: imageData,
         headers: {
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${Cookies.get('_token')}`,
-        },
-        data: {
-          img_url,
-          product_id: this.product._id,
         },
       })
         .then(() => {
           this.$swal({
             icon: 'success',
-            title: 'عکس با موفقیت حذف شد!',
+            title: 'عکس با موفقیت اضافه شد!',
             ...Toast,
           })
+
           this.getTheProduct()
+          this.images = null
         })
-        .catch(() => {
+        .catch((err) => {
           this.$swal({
             icon: 'error',
             title: 'ناموفق',

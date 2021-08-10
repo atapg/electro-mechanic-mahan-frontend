@@ -89,12 +89,12 @@ export default {
         {
           title: 'تنظیمات سایت',
           icon: 'mdi-webhook',
-          url: '/',
+          url: '/dashboard/side-setting',
         },
         {
           title: 'تنظیمات ادمین',
           icon: 'mdi-account-search-outline',
-          url: '/',
+          url: '/dashboard/admin-setting',
         },
       ],
       right: null,
