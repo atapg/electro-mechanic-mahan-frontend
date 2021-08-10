@@ -159,11 +159,12 @@ export default {
                 title: 'محصول با موفقیت ساخته شد!',
                 ...Toast,
               })
+              this.$router.push('/dashboard')
             })
             .catch((err) => {
               this.$swal({
                 icon: 'error',
-                title: err.response.data.error,
+                title: 'ناموفق',
                 ...Toast,
               })
             })
@@ -171,7 +172,7 @@ export default {
         .catch((err) => {
           this.$swal({
             icon: 'error',
-            title: err.response.data.error,
+            title: 'ناموفق',
             ...Toast,
           })
         })

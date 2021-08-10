@@ -3,13 +3,19 @@
     <v-card elevation="2" class="card">
       <p class="title">404</p>
       <p class="desc">! صفحه مورد نظر پیدا نشد</p>
-      <NuxtLink to="/"><p class="return">برگشت به صفحه اصلی</p></NuxtLink>
+      <a><p @click="goBack" class="return">بازگشت</p></a>
     </v-card>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +37,8 @@ export default {}
     }
 
     .return {
-      color: $primary;
+      color: $secondary;
+      cursor: pointer;
     }
   }
 }

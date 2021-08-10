@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card>
+    <v-card class="mb-5">
       <v-card-title> لیست محصولات</v-card-title>
     </v-card>
     <v-card>
@@ -42,6 +42,9 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+import { Toast } from '@/plugins/sweetalertMixins'
+
 export default {
   layout: 'dashboard',
   data() {
@@ -86,10 +89,40 @@ export default {
   },
   methods: {
     editHandler(product) {
-      console.log(product)
+      this.$router.push(`/dashboard/edit-product/${product._id}`)
     },
     deleteHandler(product) {
-      console.log(product)
+      this.$swal({
+        title: 'آیا از حذف این محصول مطمئن هستید؟',
+        showCancelButton: true,
+        cancelButtonText: 'خیر',
+        confirmButtonText: 'بله',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$axios({
+            method: 'DELETE',
+            url: `/products/delete/${product._id}`,
+            headers: {
+              Authorization: `Bearer ${Cookies.get('_token')}`,
+            },
+          })
+            .then(() => {
+              this.$swal({
+                icon: 'success',
+                title: 'محصول با موفقیت حذف شد!',
+                ...Toast,
+              })
+              this.$router.push('/dashboard')
+            })
+            .catch((err) => {
+              this.$swal({
+                icon: 'error',
+                title: 'ناموفق',
+                ...Toast,
+              })
+            })
+        }
+      })
     },
   },
 }

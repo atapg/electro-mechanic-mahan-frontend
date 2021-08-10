@@ -1,0 +1,216 @@
+<template>
+  <div>
+    <v-card class="mb-5">
+      <v-card-title>ویرایش محصول</v-card-title>
+    </v-card>
+    <v-card class="mb-5">
+      <v-card-title>اطلاعات محصول</v-card-title>
+      <v-card-text v-if="product">
+        <v-text-field label="نام محصول" v-model="title" outlined></v-text-field>
+
+        <v-textarea color="primary" v-model="description" outlined no-resize>
+          <template v-slot:label>
+            <div>درباره ی محصول</div>
+          </template>
+        </v-textarea>
+
+        <v-row>
+          <v-col sm="6" cols="12">
+            <v-text-field
+              label="قیمت"
+              v-model="price"
+              type="number"
+              outlined
+            ></v-text-field>
+          </v-col>
+          <v-col sm="6" cols="12">
+            <v-text-field label="اندازه" v-model="size" outlined></v-text-field>
+          </v-col>
+          <v-col sm="6" cols="12">
+            <v-text-field label="وزن" v-model="weight" outlined></v-text-field>
+          </v-col>
+          <v-col sm="6" cols="12">
+            <v-text-field label="سرعت" v-model="speed" outlined></v-text-field>
+          </v-col>
+        </v-row>
+      </v-card-text>
+      <div class="action" @click="editHandler">
+        <v-btn color="primary">ذخیره</v-btn>
+      </div>
+    </v-card>
+    <v-card>
+      <v-card-title>عکس های محصول</v-card-title>
+      <v-card-text>
+        <v-card class="mb-5" v-if="existedImages">
+          <v-card-title>عکس ها</v-card-title>
+          <v-card-title>
+            <v-row>
+              <v-col
+                v-for="image in existedImages"
+                xl="4"
+                lg="4"
+                md="6"
+                sm="6"
+                xs="12"
+              >
+                <v-card>
+                  <v-card-text>
+                    <img class="existed-images" :src="image" />
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-btn @click="deleteImage(image)" color="primary"
+                      >حذف عکس</v-btn
+                    >
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-card-title>
+        </v-card>
+
+        <v-card>
+          <v-card-title>افزودن عکس</v-card-title>
+          <v-card-text>
+            <v-file-input
+              outlined
+              counter
+              multiple
+              accept="image/png, image/jpeg, image/gif, image/jpg"
+              show-size
+              placeholder="عکس های محصول"
+              truncate-length="15"
+              v-model="images"
+            ></v-file-input>
+          </v-card-text>
+        </v-card>
+      </v-card-text>
+      <div class="action">
+        <v-btn color="primary">ذخیره</v-btn>
+      </div>
+    </v-card>
+  </div>
+</template>
+
+<script>
+import Cookies from 'js-cookie'
+import { Toast } from '@/plugins/sweetalertMixins'
+
+export default {
+  layout: 'dashboard',
+  data() {
+    return {
+      title: '',
+      description: '',
+      price: 0,
+      size: '',
+      weight: '',
+      speed: '',
+      existedImages: null,
+      images: null,
+      product: null,
+    }
+  },
+  async asyncData({ params }) {
+    const id = params.id
+    return { id }
+  },
+  mounted() {
+    this.getTheProduct()
+  },
+  methods: {
+    getTheProduct() {
+      this.$axios({
+        method: 'GET',
+        url: `/products/${this.id}`,
+      })
+        .then(({ data }) => {
+          this.product = data
+
+          if (data.images) {
+            this.existedImages = data.images
+          }
+
+          this.title = data.title
+          this.description = data.description
+          this.price = data.price
+          this.size = data.size
+          this.weight = data.weight
+          this.speed = data.speed
+        })
+        .catch((err) => {})
+    },
+    editHandler() {
+      this.$axios({
+        method: 'PATCH',
+        url: `/products/update/${this.product._id}`,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('_token')}`,
+        },
+        data: {
+          title: this.title,
+          description: this.description,
+          price: this.price,
+          size: this.size,
+          weight: this.weight,
+          speed: this.speed,
+        },
+      })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            title: 'محصول با موفقیت ویرایش شد!',
+            ...Toast,
+          })
+          this.$router.push('/dashboard')
+        })
+        .catch((err) => {
+          this.$swal({
+            icon: 'error',
+            title: 'ناموفق',
+            ...Toast,
+          })
+        })
+    },
+    deleteImage(img_url) {
+      this.$axios({
+        method: 'DELETE',
+        url: '/upload/images',
+        headers: {
+          Authorization: `Bearer ${Cookies.get('_token')}`,
+        },
+        data: {
+          img_url,
+          product_id: this.product._id,
+        },
+      })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            title: 'عکس با موفقیت حذف شد!',
+            ...Toast,
+          })
+          this.getTheProduct()
+        })
+        .catch(() => {
+          this.$swal({
+            icon: 'error',
+            title: 'ناموفق',
+            ...Toast,
+          })
+        })
+    },
+  },
+}
+</script>
+
+<style scoped lang="scss">
+.action {
+  padding: $spacing / 2;
+}
+
+.existed-images {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+</style>
