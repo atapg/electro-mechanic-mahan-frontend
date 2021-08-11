@@ -10,6 +10,7 @@
       :loop="true"
       :autoInsertCss="false"
       :cursorChar="''"
+      class="typing"
     >
       <h1 class="contents display-2 typing"></h1>
     </vue-typed-js>
@@ -41,6 +42,10 @@ export default {
 <style scoped lang="scss">
 .hero-container {
   position: relative;
+
+  .typing {
+    font-family: IRANSans !important;
+  }
 
   .more {
     position: absolute;

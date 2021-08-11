@@ -76,12 +76,14 @@ export default {
 .carousel-section-container {
   direction: ltr;
   padding: 0 $spacing / 2;
+  font-family: IRANSans !important;
 
   .carousel-title {
     text-align: right;
     margin-right: $spacing / 2;
     padding: 0 15px;
     border-right: 5px solid $primary;
+    font-family: IRANSans !important;
   }
 
   .carousel-container {

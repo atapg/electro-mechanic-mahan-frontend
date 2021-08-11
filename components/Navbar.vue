@@ -10,10 +10,11 @@
         <div class="subtitle-1 phone">{{ phone }}</div>
       </div>
     </header>
-    <nav>
+    <nav class="shadow" ref="navbar">
       <ul>
         <li v-for="nav in nav_items" :key="nav.index">
           <NuxtLink :to="nav.url">{{ nav.title }}</NuxtLink>
+          <v-divider class="divider" vertical></v-divider>
         </li>
       </ul>
     </nav>
@@ -46,6 +47,7 @@ export default {
     background-color: $primary;
     height: 70px;
     justify-content: flex-start;
+    z-index: 11;
 
     .logo {
       height: 100%;
@@ -77,15 +79,23 @@ export default {
   }
 
   nav {
-    background-color: $light_grey;
+    background-color: $white;
+    -webkit-box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 7px 1px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+
     ul {
       display: flex;
       list-style-type: none;
       padding: 0 $spacing;
 
       li {
-        margin-left: 15px;
-        padding: 10px 0 10px 10px;
+        padding: 10px 0 10px 0px;
+        display: flex;
+
+        .divider {
+          margin: 0 $spacing;
+        }
 
         & > * {
           text-decoration: none;

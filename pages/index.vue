@@ -169,6 +169,7 @@ export default {
     margin-right: $spacing / 2;
     padding: 0 15px;
     border-right: 5px solid $primary;
+    font-family: IRANSans !important;
   }
 
   .wrapper {
