@@ -2,7 +2,7 @@
   <div class="product-container my-5">
     <v-row v-if="this.product">
       <v-col xl="6" lg="6" md="6" sm="12" cols="12">
-        <v-card min-height="550" class="product-card">
+        <v-card min-height="550" height="100%" class="product-card">
           <v-card-title class="mb-3 display-1">
             {{ product.title }}
           </v-card-title>
@@ -13,14 +13,29 @@
           <v-card-actions class="product-info subtitle-1">
             <strong>مشخصات :</strong>
           </v-card-actions>
-          <v-card-actions> وزن : {{ product.weight }} kg</v-card-actions>
-          <v-card-actions> سرعت : {{ product.speed }} m/s</v-card-actions>
-          <v-card-actions> اندازه : {{ product.size }} متر مربع</v-card-actions>
-          <v-card-actions> قیمت : {{ product.price }} تومان</v-card-actions>
+          <v-card-actions>
+            وزن : {{ product.weight ? product.weight : '-' }} kg</v-card-actions
+          >
+          <v-card-actions>
+            سرعت : {{ product.speed ? product.speed : '-' }} m/s</v-card-actions
+          >
+          <v-card-actions>
+            اندازه : {{ product.size ? product.size : '-' }} متر
+            مربع</v-card-actions
+          >
+          <v-card-actions>
+            قیمت :
+            {{ product.price ? product.price : '-' }} تومان</v-card-actions
+          >
         </v-card>
       </v-col>
       <v-col xl="6" lg="6" md="6" sm="12" cols="12">
-        <v-card min-height="550" elevation="1" class="product-card">
+        <v-card
+          min-height="550"
+          height="100%"
+          elevation="1"
+          class="product-card"
+        >
           <div class="image-section">
             <carousel
               :perPage="1"
@@ -36,7 +51,7 @@
                 class="slide center flex-col"
                 :key="item"
               >
-                <img :src="item" />
+                <img :src="item" class="image" />
               </slide>
             </carousel>
           </div>
@@ -149,6 +164,8 @@ export default {
       max-height: 300px;
       img {
         width: 100%;
+        height: 300px;
+        object-fit: cover;
       }
     }
   }

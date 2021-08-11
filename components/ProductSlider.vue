@@ -16,18 +16,18 @@
         class="slide center flex-col"
       >
         <div class="slider-image-container slider-container center">
-          <v-card>
+          <v-card width="300px" height="360px" class="card-container">
             <img :src="product.images[0]" class="image" />
             <div class="items">
               <div class="subtitle-1 title mb-10">
                 {{ product.title }}
               </div>
               <div class="subtitle-2 description"></div>
-              <div class="action">
-                <NuxtLink :to="`/products/${product._id}`">
-                  <v-btn color="primary">مشاهده محصول</v-btn>
-                </NuxtLink>
-              </div>
+            </div>
+            <div class="action">
+              <NuxtLink :to="`/products/${product._id}`">
+                <v-btn color="primary">مشاهده محصول</v-btn>
+              </NuxtLink>
             </div>
           </v-card>
         </div>
@@ -95,6 +95,16 @@ export default {
       .slider-container {
         padding: 0 $spacing / 2;
 
+        .card-container {
+          position: relative;
+
+          .action {
+            position: absolute;
+            bottom: $spacing/2;
+            left: $spacing/2;
+          }
+        }
+
         .items {
           padding: 5px 10px;
           text-align: right;
@@ -108,17 +118,13 @@ export default {
             line-height: 17px;
             color: $description;
           }
-
-          .action {
-            text-align: left;
-            margin-bottom: 5px;
-          }
         }
       }
 
       .image {
         margin: auto;
         width: 100%;
+        height: 200px;
       }
     }
   }
