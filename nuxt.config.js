@@ -27,6 +27,12 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/_global.scss'],
 
+  loading: {
+    color: '#ffa801',
+    height: '4px',
+    continuous: true,
+  },
+
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['~/plugins/typing.js', '~/plugins/sweetalert.js'],
 

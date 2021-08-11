@@ -1,7 +1,11 @@
 <template>
   <div class="products-page-container mt-5 mb-10">
     <v-card elevation="0" class="mb-5">
-      <v-text-field label="جستجو" outlined v-model="search"></v-text-field>
+      <v-text-field
+        label="جستجوی محصول مورد نظر..."
+        outlined
+        v-model="search"
+      ></v-text-field>
     </v-card>
     <v-row v-if="this.products.length > 0">
       <v-col
@@ -55,6 +59,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-card elevation="0" class="mt-5">
+      <v-pagination v-model="page" :length="numberOfPages"></v-pagination>
+    </v-card>
   </div>
 </template>
 
@@ -65,6 +72,8 @@ export default {
     return {
       products: [],
       search: '',
+      page: 1,
+      numberOfPages: 0,
     }
   },
   head() {
@@ -80,6 +89,8 @@ export default {
     })
       .then(({ data }) => {
         this.products = data.products
+        this.page = data.page
+        this.numberOfPages = data.numberOfPages
       })
       .catch((err) => {})
   },
@@ -98,8 +109,18 @@ export default {
           this.products = data
         })
         .catch((err) => {})
-
-      console.log(this.products)
+    },
+    page() {
+      this.$axios({
+        method: 'GET',
+        url: `/products?page=${this.page}`,
+      })
+        .then(({ data }) => {
+          this.products = data.products
+          this.page = data.page
+          this.numberOfPages = data.numberOfPages
+        })
+        .catch((err) => {})
     },
   },
 }

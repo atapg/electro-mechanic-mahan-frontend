@@ -65,12 +65,10 @@ export default {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((res) => {
-          if (res.status === 200) {
-            this.$router.push('/dashboard')
-          }
+        .then(() => {
+          this.$router.push('/dashboard')
         })
-        .catch((err) => {})
+        .catch(() => {})
     }
   },
   methods: {
