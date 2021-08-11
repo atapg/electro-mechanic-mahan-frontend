@@ -1,5 +1,5 @@
 <template>
-  <v-footer :padless="true">
+  <v-footer :padless="true" class="footer-container">
     <v-card flat tile width="100%" class="primary text-center">
       <v-card-text>
         <v-btn
@@ -47,4 +47,11 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.footer-container {
+  font-family: IRANSans !important;
+  .overline {
+    font-family: IRANSans !important;
+  }
+}
+</style>

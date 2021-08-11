@@ -90,6 +90,8 @@ export default {
 
           if (this.checkbox) {
             Cookies.set('_token', data.token, { expires: 7 })
+          } else {
+            Cookies.set('_token', data.token)
           }
 
           this.$router.push('/dashboard')
