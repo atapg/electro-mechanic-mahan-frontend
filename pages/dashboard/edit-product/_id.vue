@@ -46,12 +46,13 @@
           <v-card-title>
             <v-row>
               <v-col
-                v-for="image in existedImages"
+                v-for="(image, index) in existedImages"
                 xl="4"
                 lg="4"
                 md="6"
                 sm="6"
                 xs="12"
+                :key="index"
               >
                 <v-card>
                   <v-card-text>
@@ -68,7 +69,7 @@
           </v-card-title>
         </v-card>
 
-        <v-card>
+        <v-card class="mb-5">
           <v-card-title>افزودن عکس</v-card-title>
           <v-card-text>
             <v-file-input
@@ -82,11 +83,40 @@
               v-model="images"
             ></v-file-input>
           </v-card-text>
+          <v-card-actions>
+            <v-btn @click="uploadNewImages" color="primary">ذخیره</v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-card>
+          <v-card-title>افزودن عکس با لینک (بدون آپلود بر سرور)</v-card-title>
+          <v-card-text>
+            <v-text-field
+              outlined
+              label="image"
+              v-for="input in inputs"
+              :key="input"
+              v-model="imagesWithUrl[input - 1]"
+            ></v-text-field>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="secondary"
+              @click="addField"
+              class="btn-add-field mr-2"
+            >
+              افزودن فیلد
+            </v-btn>
+            <v-btn
+              color="secondary"
+              @click="deleteField"
+              class="btn-add-field mr-2"
+            >
+              حذف فیلد
+            </v-btn>
+            <v-btn color="primary" @click="addImagesWithUrl">ذخیره</v-btn>
+          </v-card-actions>
         </v-card>
       </v-card-text>
-      <v-card-actions>
-        <v-btn @click="uploadNewImages" color="primary">ذخیره</v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -108,6 +138,8 @@ export default {
       existedImages: null,
       images: null,
       product: null,
+      imagesWithUrl: [],
+      inputs: 1,
     }
   },
   async asyncData({ params }) {
@@ -118,6 +150,47 @@ export default {
     this.getTheProduct()
   },
   methods: {
+    addField() {
+      this.inputs++
+    },
+    deleteField() {
+      if (this.inputs > 1) {
+        this.inputs--
+      }
+    },
+    addImagesWithUrl() {
+      //delete empty string element
+      // this.imagesWithUrl.shift()
+
+      this.$axios({
+        method: 'POST',
+        url: '/upload/image-with-url',
+        data: {
+          product_id: this.product._id,
+          images: this.imagesWithUrl,
+        },
+        headers: {
+          Authorization: `Bearer ${Cookies.get('_token')}`,
+        },
+      })
+        .then(() => {
+          this.$swal({
+            icon: 'success',
+            title: 'لینک عکس با موفقیت اضافه شد!',
+            ...Toast,
+          })
+          this.getTheProduct()
+          this.imagesWithUrl = []
+          this.inputs = 1
+        })
+        .catch(() => {
+          this.$swal({
+            icon: 'error',
+            title: 'ناموفق',
+            ...Toast,
+          })
+        })
+    },
     getTheProduct() {
       this.$axios({
         method: 'GET',
@@ -161,7 +234,6 @@ export default {
             title: 'محصول با موفقیت ویرایش شد!',
             ...Toast,
           })
-          this.$router.push('/dashboard')
         })
         .catch((err) => {
           this.$swal({
@@ -256,5 +328,15 @@ export default {
   width: 100%;
   height: 150px;
   object-fit: cover;
+}
+
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn-add-field {
+    align-self: flex-start;
+  }
 }
 </style>

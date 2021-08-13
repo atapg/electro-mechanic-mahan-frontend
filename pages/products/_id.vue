@@ -14,19 +14,18 @@
             <strong>مشخصات :</strong>
           </v-card-actions>
           <v-card-actions>
-            وزن : {{ product.weight ? product.weight : '-' }} kg</v-card-actions
-          >
+            وزن : {{ product.weight ? product.weight : '-' }}
+          </v-card-actions>
           <v-card-actions>
-            سرعت : {{ product.speed ? product.speed : '-' }} m/s</v-card-actions
-          >
+            سرعت : {{ product.speed ? product.speed : '-' }}
+          </v-card-actions>
           <v-card-actions>
-            اندازه : {{ product.size ? product.size : '-' }} متر
-            مربع</v-card-actions
-          >
+            اندازه : {{ product.size ? product.size : '-' }}
+          </v-card-actions>
           <v-card-actions>
             قیمت :
-            {{ product.price ? product.price : '-' }} تومان</v-card-actions
-          >
+            {{ product.price ? product.price : '-' }} تومان
+          </v-card-actions>
         </v-card>
       </v-col>
       <v-col xl="6" lg="6" md="6" sm="12" cols="12">
@@ -47,9 +46,9 @@
               class="carousel-container"
             >
               <slide
-                v-for="item in this.product.images"
+                v-for="(item, index) in this.product.images"
                 class="slide center flex-col"
-                :key="item"
+                :key="index"
               >
                 <img :src="item" class="image" />
               </slide>

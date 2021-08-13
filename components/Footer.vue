@@ -11,7 +11,7 @@
           rounded
           class="my-2 ml-2 mr-2"
         >
-          <div class="overline">{{ link.title }}</div>
+          {{ link.title }}
         </v-btn>
       </v-card-text>
       <v-divider></v-divider>

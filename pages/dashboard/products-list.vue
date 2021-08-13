@@ -11,6 +11,7 @@
         class="elevation-1"
         loading="data"
         :loading-text="loading"
+        item-key="id"
         :footer-props="{
           'items-per-page-text': 'تعداد تراکنش در هر صفحه',
         }"
@@ -72,8 +73,8 @@ export default {
       url: '/products/get-all',
     })
       .then(({ data }) => {
-        const modifiedProducts = data?.map((product, index) => ({
-          index,
+        const modifiedProducts = data?.reverse().map((product, index) => ({
+          index: index + 1,
           ...product,
         }))
 

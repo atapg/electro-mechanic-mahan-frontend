@@ -55,7 +55,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://electro-mechanic-mahan-backend.herokuapp.com/api/',
+    // baseURL: 'https://electro-mechanic-mahan-backend.herokuapp.com/api/',
+    baseURL: 'http://localhost:8000/api/',
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -70,6 +71,9 @@ export default {
     rtl: true,
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
+    options: {
+      customProperties: true,
+    },
     theme: {
       themes: {
         light: {
