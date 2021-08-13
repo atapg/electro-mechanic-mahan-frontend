@@ -24,7 +24,7 @@
           </v-card-actions>
           <v-card-actions>
             قیمت :
-            {{ product.price ? product.price : '-' }} تومان
+            {{ product.price ? formatNumber(product.price) : '-' }} تومان
           </v-card-actions>
         </v-card>
       </v-col>
@@ -137,6 +137,22 @@ export default {
         this.title = data.title
       })
       .catch((err) => {})
+  },
+  methods: {
+    formatNumber(num) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
+      return num
+        .toString()
+        .split('')
+        .map((x) => farsiDigits[x])
+        .reverse()
+        .join('')
+        .match(/.{1,3}/g)
+        .join(',')
+        .split('')
+        .reverse()
+        .join('')
+    },
   },
   computed: {
     phone() {

@@ -60,7 +60,7 @@ export default {
             value: 'index',
           },
           { text: 'نام محصول', value: 'title' },
-          { text: 'قیمت', value: 'price' },
+          { text: 'قیمت', value: 'perPrice' },
           { text: '', value: 'controls', sortable: false },
         ],
         items: [],
@@ -75,6 +75,7 @@ export default {
       .then(({ data }) => {
         const modifiedProducts = data?.reverse().map((product, index) => ({
           index: index + 1,
+          perPrice: `${this.formatNumber(product.price)} تومان`,
           ...product,
         }))
 
@@ -89,6 +90,20 @@ export default {
       })
   },
   methods: {
+    formatNumber(num) {
+      const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
+      return num
+        .toString()
+        .split('')
+        .map((x) => farsiDigits[x])
+        .reverse()
+        .join('')
+        .match(/.{1,3}/g)
+        .join(',')
+        .split('')
+        .reverse()
+        .join('')
+    },
     editHandler(product) {
       this.$router.push(`/dashboard/edit-product/${product._id}`)
     },

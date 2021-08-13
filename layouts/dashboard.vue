@@ -87,15 +87,14 @@ export default {
           icon: 'mdi-format-list-bulleted',
           url: '/dashboard/products-list',
         },
-
         {
           title: 'تنظیمات سایت',
-          icon: 'mdi-webhook',
-          url: '/dashboard/side-setting',
+          icon: 'mdi-cog-outline',
+          url: '/dashboard/site-setting',
         },
         {
           title: 'تنظیمات ادمین',
-          icon: 'mdi-account-search-outline',
+          icon: 'mdi-account-cog-outline',
           url: '/dashboard/admin-setting',
         },
       ],

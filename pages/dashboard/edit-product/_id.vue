@@ -92,8 +92,8 @@
           <v-card-text>
             <v-text-field
               outlined
-              label="image"
               v-for="input in inputs"
+              :label="`عکس ${input}`"
               :key="input"
               v-model="imagesWithUrl[input - 1]"
             ></v-text-field>
@@ -159,9 +159,6 @@ export default {
       }
     },
     addImagesWithUrl() {
-      //delete empty string element
-      // this.imagesWithUrl.shift()
-
       this.$axios({
         method: 'POST',
         url: '/upload/image-with-url',
