@@ -35,6 +35,14 @@
             <div>
               <v-subheader>
                 <v-icon>{{ newSocials[index].icon }}</v-icon>
+                <v-divider vertical class="mx-3"></v-divider>
+                <v-btn
+                  @click="deleteSocial(newSocials[index].info)"
+                  x-small
+                  elevation="0"
+                  fab
+                  ><v-icon>mdi-close</v-icon>
+                </v-btn>
               </v-subheader>
               <v-divider class="mb-5"></v-divider>
               <v-text-field
@@ -51,6 +59,9 @@
           </v-col>
         </v-row>
       </v-card-text>
+      <v-card-actions>
+        <v-btn color="secondary" @click="addNew(newSocials)">افزودن</v-btn>
+      </v-card-actions>
     </v-card>
     <v-card class="mb-5">
       <v-card-title>تنظیمات هدر</v-card-title>
@@ -63,7 +74,17 @@
             :key="index"
           >
             <div>
-              <v-subheader> شماره {{ index + 1 }} </v-subheader>
+              <v-subheader>
+                شماره {{ index + 1 }}
+                <v-divider vertical class="mx-3"></v-divider>
+                <v-btn
+                  @click="deleteNavItems(newNavItems[index].title)"
+                  x-small
+                  elevation="0"
+                  fab
+                  ><v-icon>mdi-close</v-icon>
+                </v-btn>
+              </v-subheader>
               <v-divider class="mb-5"></v-divider>
               <v-text-field
                 outlined
@@ -79,6 +100,9 @@
           </v-col>
         </v-row>
       </v-card-text>
+      <v-card-actions>
+        <v-btn color="secondary" @click="addNew(newNavItems)">افزودن</v-btn>
+      </v-card-actions>
     </v-card>
     <v-card class="mb-5">
       <v-card-title>تنظیمات نوشتار صفحه اصلی</v-card-title>
@@ -90,6 +114,14 @@
             v-for="(value, index) in typings"
             :key="index"
           >
+            <v-subheader>
+              شماره {{ index + 1 }}
+              <v-divider vertical class="mx-3"></v-divider>
+              <v-btn x-small elevation="0" fab @click="deleteTypings(index)">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-subheader>
+            <v-divider class="mb-5"></v-divider>
             <v-text-field
               outlined
               v-model="newTypings[index]"
@@ -98,6 +130,9 @@
           </v-col>
         </v-row>
       </v-card-text>
+      <v-card-actions>
+        <v-btn color="secondary" @click="addNew(newTypings)">افزودن</v-btn>
+      </v-card-actions>
     </v-card>
     <v-card>
       <v-card-actions>
@@ -129,8 +164,34 @@ export default {
     this.getSiteInfo()
   },
   methods: {
+    addNew(arr) {
+      if (arr === this.newSocials) {
+        this.newSocials.push({
+          info: '',
+          icon: '',
+        })
+      } else if (arr === this.newNavItems) {
+        this.newNavItems.push({
+          url: '',
+          title: '',
+        })
+      } else {
+        this.newTypings.push('')
+      }
+    },
+    deleteSocial(item) {
+      const arr = this.newSocials.findIndex((inf) => inf.info === item)
+      this.newSocials.splice(arr, 1)
+    },
+    deleteNavItems(item) {
+      const arr = this.newNavItems.findIndex((inf) => inf.title === item)
+      this.newNavItems.splice(arr, 1)
+    },
+    deleteTypings(item) {
+      console.log(item)
+      this.newTypings.splice(item, 1)
+    },
     editSettings() {
-      // //add swal yes/no
       this.$swal({
         title: 'آیا برای ذخیره مطمئن هستید؟',
         showCancelButton: true,
