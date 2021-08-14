@@ -11,3 +11,7 @@ export const mutations = {
     state.siteInfo = siteinfo
   },
 }
+
+export const getters = {
+  getTypings: (state) => state.siteInfo.typings,
+}

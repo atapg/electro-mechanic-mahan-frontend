@@ -108,6 +108,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import { Toast } from '@/plugins/sweetalertMixins'
 
 export default {
@@ -130,9 +131,48 @@ export default {
   methods: {
     editSettings() {
       // //add swal yes/no
-      console.log(this.newSocials)
-      // console.log(this.socials)
-      // console.log(this.siteInfo)
+      this.$swal({
+        title: 'آیا برای ذخیره مطمئن هستید؟',
+        showCancelButton: true,
+        cancelButtonText: 'خیر',
+        confirmButtonText: 'بله',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const wholeSettins = {}
+
+          for (let i in this.settings) {
+            wholeSettins[i] = this.settings[i]
+          }
+          wholeSettins.nav_items = this.newNavItems
+          wholeSettins.typings = this.typings
+          wholeSettins.socials = this.newSocials
+
+          this.$axios({
+            method: 'PATCH',
+            url: '/site-setting',
+            data: wholeSettins,
+            headers: {
+              Authorization: `Bearer ${Cookies.get('_token')}`,
+            },
+          })
+            .then((res) => {
+              this.$swal({
+                icon: 'success',
+                title: 'تنظیمات سایت اعمال شد!',
+                ...Toast,
+              })
+            })
+            .catch((err) => {
+              console.log(err)
+              console.log(err.response)
+              this.$swal({
+                icon: 'error',
+                title: 'ناموفق',
+                ...Toast,
+              })
+            })
+        }
+      })
     },
     getSiteInfo() {
       this.$axios({

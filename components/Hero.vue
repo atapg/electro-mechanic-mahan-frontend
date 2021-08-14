@@ -4,16 +4,7 @@
       <img :src="hero_bg" alt="electro_mechanic_mahan" />
       <div class="overlay" />
     </div>
-    <vue-typed-js
-      :strings="typings"
-      :typeSpeed="100"
-      :loop="true"
-      :autoInsertCss="false"
-      :cursorChar="''"
-      class="typing"
-    >
-      <h1 class="contents display-2 typing"></h1>
-    </vue-typed-js>
+    <Typing :typeArray="typings" className="typing" />
     <div class="more">
       <v-btn color="primary" to="/products" large>مشاهده محصولات</v-btn>
     </div>
@@ -21,19 +12,25 @@
 </template>
 
 <script>
+import Typing from './Typing.vue'
 export default {
   data() {
-    return {
-      typings: [
-        'الکترو مکانیک ماهان',
-        'ساخت انواع دستگاه های پرس داغی و هیدرولیکی',
-        'ساخت انواع دستگاه های چاپ',
-      ],
-    }
+    return {}
+  },
+  components: {
+    Typing,
   },
   computed: {
     hero_bg() {
       return this.$store.state.siteInfo.hero_bg
+    },
+    typings() {
+      return this.$store.state.siteInfo.typings
+    },
+  },
+  watch: {
+    typings() {
+      return this.typings
     },
   },
 }
@@ -45,13 +42,18 @@ export default {
 
   .typing {
     font-family: IRANSans !important;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: $white;
+    transform: translateY(-50%) translateX(-50%);
+    padding: $spacing / 2;
   }
 
   .more {
     position: absolute;
-    top: 60%;
+    bottom: 5%;
     color: $white;
-    transform: translateY(-50%);
     margin: 20px 40px 20px 0;
   }
 
@@ -89,9 +91,13 @@ export default {
 }
 
 @media screen and(max-width: 600px) {
-  .container {
+  .hero-container {
     .more {
-      top: 70%;
+      bottom: 1%;
+    }
+    .typing {
+      top: 40%;
+      font-size: 1.5rem !important;
     }
   }
 }
