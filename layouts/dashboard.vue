@@ -88,14 +88,14 @@ export default {
           url: '/dashboard/products-list',
         },
         {
-          title: 'تنظیمات سایت',
-          icon: 'mdi-cog-outline',
-          url: '/dashboard/site-setting',
-        },
-        {
           title: 'تنظیمات ادمین',
           icon: 'mdi-account-cog-outline',
           url: '/dashboard/admin-setting',
+        },
+        {
+          title: 'تنظیمات سایت',
+          icon: 'mdi-cog-outline',
+          url: '/dashboard/site-setting',
         },
       ],
       right: null,
