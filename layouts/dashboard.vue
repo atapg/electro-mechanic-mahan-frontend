@@ -70,7 +70,6 @@ import Cookies from 'js-cookie'
 export default {
   data() {
     return {
-      user: 'ata parvin ghods',
       items: [
         {
           title: 'داشبورد',
@@ -99,7 +98,7 @@ export default {
         },
         {
           title: 'تنظیمات تصاویر',
-          icon: 'mdi-file-image-outline',
+          icon: 'mdi-image-edit-outline',
           url: '/dashboard/images-setting',
         },
       ],
@@ -126,6 +125,11 @@ export default {
           this.$router.push('/')
         }
       })
+    },
+  },
+  computed: {
+    user() {
+      return this.$store.state.user.name
     },
   },
 }

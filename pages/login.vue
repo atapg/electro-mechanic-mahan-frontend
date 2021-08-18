@@ -88,6 +88,9 @@ export default {
             ...Toast,
           })
 
+          this.$store.commit('addUser', data.admin)
+          this.$forceUpdate()
+
           if (this.checkbox) {
             Cookies.set('_token', data.token, { expires: 7 })
           } else {
