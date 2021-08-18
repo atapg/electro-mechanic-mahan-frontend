@@ -97,6 +97,11 @@ export default {
           icon: 'mdi-cog-outline',
           url: '/dashboard/site-setting',
         },
+        {
+          title: 'تنظیمات تصاویر',
+          icon: 'mdi-file-image-outline',
+          url: '/dashboard/images-setting',
+        },
       ],
       right: null,
       drawer: true,

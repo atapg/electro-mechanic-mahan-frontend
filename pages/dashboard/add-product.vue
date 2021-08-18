@@ -26,6 +26,12 @@
                   outlined
                 ></v-text-field>
 
+                <v-text-field
+                  label="توضیح مختصر محصول"
+                  v-model="smallDesc"
+                  outlined
+                ></v-text-field>
+
                 <v-textarea
                   color="primary"
                   v-model="description"
@@ -94,6 +100,7 @@
             <v-btn color="primary" @click="createProduct">
               ذخیره و پایان
             </v-btn>
+            <v-btn color="secondary" @click="step = 1"> قبلی </v-btn>
           </v-stepper-content>
           <!-- step 2 -->
         </v-stepper-items>
@@ -118,6 +125,7 @@ export default {
       weight: '',
       speed: '',
       images: null,
+      smallDesc: '',
     }
   },
   methods: {
@@ -135,6 +143,7 @@ export default {
           size: this.size,
           weight: this.weight,
           speed: this.speed,
+          smallDesc: this.smallDesc,
         },
       })
         .then(({ data }) => {

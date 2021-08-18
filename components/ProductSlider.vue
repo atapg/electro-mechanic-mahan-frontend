@@ -22,7 +22,9 @@
               <div class="subtitle-1 title mb-10">
                 {{ product.title }}
               </div>
-              <div class="subtitle-2 description"></div>
+              <div class="subtitle-2 description">
+                {{ product.smallDesc }}
+              </div>
             </div>
             <div class="action">
               <NuxtLink :to="`/products/${product._id}`">
