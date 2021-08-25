@@ -57,11 +57,23 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row v-else>
+    <v-row v-else-if="this.error">
       <v-col xl="12" lg="12" md="12" sm="12" cols="12">
         <v-card>
           <v-card-title>محصول مورد نظر وجود ندارد!</v-card-title>
         </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-else>
+      <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+        <div class="spinner center my-5">
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            color="primary"
+            indeterminate
+          ></v-progress-circular>
+        </div>
       </v-col>
     </v-row>
     <v-card class="mt-5">
@@ -115,6 +127,7 @@ export default {
     return {
       product: null,
       title: 'product',
+      error: false,
     }
   },
   head() {
@@ -136,7 +149,9 @@ export default {
         this.product = data
         this.title = data.title
       })
-      .catch((err) => {})
+      .catch((err) => {
+        this.error = true
+      })
   },
   methods: {
     formatNumber(num) {

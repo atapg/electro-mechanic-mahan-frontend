@@ -106,7 +106,7 @@ export default {
         url: `/products/search?search=${this.search}`,
       })
         .then(({ data }) => {
-          this.products = data
+          this.products = data.products
         })
         .catch((err) => {})
     },
