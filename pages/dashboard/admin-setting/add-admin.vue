@@ -32,6 +32,7 @@
               label="رمز عبور"
               v-model="password"
               outlined
+              type="password"
             ></v-text-field>
           </v-col>
         </v-row>
