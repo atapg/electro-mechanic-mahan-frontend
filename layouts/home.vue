@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      nav_items: [{ title: 'ورود', url: '/login' }],
+      nav_items: [],
     }
   },
   mounted() {
@@ -34,7 +34,7 @@ export default {
         data.nav_items.forEach((item) => {
           this.nav_items.push(item)
         })
-        this.nav_items.reverse()
+        this.nav_items.push({ title: 'ورود', url: '/login' })
 
         this.$store.commit('addSiteInfo', data)
         this.$forceUpdate()
