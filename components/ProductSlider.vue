@@ -2,13 +2,15 @@
   <div class="mb-5 carousel-section-container">
     <div class="carousel-title title">برخی از محصولات ما</div>
     <carousel
-      :perPage="perPage"
+      :perPageCustom="perPage"
       :autoplay="true"
       :autoplay-timeout="5000"
       :loop="true"
       :centerMode="true"
       autoplayDirection="forward"
       class="carousel-container"
+      :paginationEnabled="false"
+      :minSwipeDistance="1"
     >
       <slide
         v-for="product in products"
@@ -16,7 +18,12 @@
         class="slide center flex-col"
       >
         <div class="slider-image-container slider-container center">
-          <v-card width="300px" height="360px" class="card-container">
+          <v-card
+            elevation="1"
+            width="300px"
+            height="360px"
+            class="card-container"
+          >
             <img :src="product.images[0]" class="image" />
             <div class="items">
               <div class="subtitle-1 title mb-10">
@@ -44,33 +51,19 @@ import { Carousel, Slide } from 'vue-carousel'
 export default {
   data() {
     return {
-      perPage: 4,
-      xl: window.matchMedia('(min-width: 1904px)'),
-      lg: window.matchMedia('(max-width: 1903px)'),
-      md: window.matchMedia('(max-width: 1264px)'),
-      sm: window.matchMedia('(max-width: 960px)'),
-      xs: window.matchMedia('(max-width: 600px)'),
+      perPage: [
+        [4000, 6],
+        [1902, 5],
+        [1264, 4],
+        [960, 3],
+        [600, 2],
+        [1, 1],
+      ],
     }
   },
   props: ['products'],
   components: { Carousel, Slide },
-  mounted() {
-    if (this.xl.matches) {
-      this.perPage = 5
-    }
-    if (this.lg.matches) {
-      this.perPage = 4
-    }
-    if (this.md.matches) {
-      this.perPage = 3
-    }
-    if (this.sm.matches) {
-      this.perPage = 2
-    }
-    if (this.xs.matches) {
-      this.perPage = 1
-    }
-  },
+  mounted() {},
 }
 </script>
 

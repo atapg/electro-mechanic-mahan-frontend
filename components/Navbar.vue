@@ -2,7 +2,7 @@
   <div class="navbar-container center flex-col">
     <header class="center">
       <div class="logo">
-        <img :src="logo" alt="logo" />
+        <img :src="logo" alt="electro-mechanic-mahan" />
       </div>
       <div class="call-section flex">
         <v-icon>mdi-phone</v-icon>

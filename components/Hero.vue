@@ -4,7 +4,13 @@
       <img :src="hero_bg" alt="electro_mechanic_mahan" />
       <div class="overlay" />
     </div>
-    <Typing :typeArray="typings" className="typing" />
+    <!--    <Typing :typeArray="typings" className="typing" />-->
+    <div class="hero-text">
+      <h1 class="hero-title mb-5">الکترو مکانیک ماهان</h1>
+      <div>
+        <p>ساخت انواع دستگاه های حرارتی، جلد زنی، داغی و هیدرولیکی</p>
+      </div>
+    </div>
     <div class="more">
       <v-btn color="primary" to="/products" large>مشاهده محصولات</v-btn>
     </div>
@@ -13,6 +19,7 @@
 
 <script>
 import Typing from './Typing.vue'
+
 export default {
   data() {
     return {}
@@ -39,6 +46,25 @@ export default {
 <style scoped lang="scss">
 .hero-container {
   position: relative;
+
+  .hero-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $spacing;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: $white;
+
+    .hero-title {
+      font-size: 3rem;
+    }
+    p {
+    }
+  }
 
   .typing {
     font-family: IRANSans !important;
@@ -79,6 +105,7 @@ export default {
       height: 100%;
       object-fit: cover;
     }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -95,6 +122,7 @@ export default {
     .more {
       bottom: 1%;
     }
+
     .typing {
       top: 40%;
       font-size: 1.5rem !important;
