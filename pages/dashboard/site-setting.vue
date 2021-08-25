@@ -8,7 +8,7 @@
       <v-card-text>
         <v-row>
           <v-col
-            sm="6"
+            sm="12"
             cols="12"
             v-for="(value, index) in settings"
             :key="index"
@@ -303,6 +303,8 @@ export default {
           return 'عنوان'
         case 'url':
           return 'لینک'
+        case 'about':
+          return 'درباره ما'
         default:
           break
       }

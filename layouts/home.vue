@@ -1,9 +1,11 @@
 <template>
   <div class="home-container">
     <v-app>
-      <Navbar />
-      <nuxt />
-      <Footer />
+      <div class="layout-container">
+        <Navbar />
+        <nuxt />
+        <Footer />
+      </div>
     </v-app>
   </div>
 </template>
@@ -36,5 +38,13 @@ export default {
 .home-container {
   max-width: 2000px;
   margin: auto;
+
+  .layout-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+  }
 }
 </style>

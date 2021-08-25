@@ -66,6 +66,10 @@ export default {
           url: '/products',
         },
         {
+          title: 'درباره ما',
+          url: '/about',
+        },
+        {
           title: 'ورود',
           url: '/login',
         },
