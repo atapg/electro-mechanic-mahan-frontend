@@ -53,27 +53,10 @@
 
 <script>
 export default {
+  props: ['nav_items'],
   data() {
     return {
       brand: 'الکترو مکانیک ماهان',
-      nav_items: [
-        {
-          title: 'خانه',
-          url: '/',
-        },
-        {
-          title: 'محصولات',
-          url: '/products',
-        },
-        {
-          title: 'درباره ما',
-          url: '/about',
-        },
-        {
-          title: 'ورود',
-          url: '/login',
-        },
-      ],
       products: [],
       randomProducts: [],
     }

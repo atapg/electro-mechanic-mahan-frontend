@@ -4,7 +4,7 @@
       <div class="layout-container">
         <Navbar />
         <nuxt />
-        <Footer />
+        <Footer :nav_items="nav_items" />
       </div>
     </v-app>
   </div>
@@ -19,6 +19,11 @@ export default {
     Navbar,
     Footer,
   },
+  data() {
+    return {
+      nav_items: [{ title: 'ورود', url: '/login' }],
+    }
+  },
   mounted() {
     //get site info
     this.$axios({
@@ -26,6 +31,11 @@ export default {
       url: '/public',
     })
       .then(({ data }) => {
+        data.nav_items.forEach((item) => {
+          this.nav_items.push(item)
+        })
+        this.nav_items.reverse()
+
         this.$store.commit('addSiteInfo', data)
         this.$forceUpdate()
       })
