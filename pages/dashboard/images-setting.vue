@@ -66,7 +66,7 @@ export default {
       allImages: [],
       page: 1,
       numberOfPages: 0,
-      images: null,
+      images: [],
     }
   },
   mounted() {
@@ -112,7 +112,7 @@ export default {
           })
 
           this.getImages()
-          this.images = null
+          this.images = []
         })
         .catch((err) => {
           this.$swal({

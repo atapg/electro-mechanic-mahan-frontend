@@ -127,9 +127,25 @@ export default {
       })
     },
   },
+  mounted() {
+    this.$axios({
+      method: 'GET',
+      url: '/admins/get-admin',
+      headers: {
+        Authorization: `Bearer ${Cookies.get('_token')}`,
+      },
+    })
+      .then(({ data }) => {
+        this.$store.commit('addUser', data.admin)
+        this.$forceUpdate()
+      })
+      .catch((err) => {
+        console.log(err.response)
+      })
+  },
   computed: {
     user() {
-      return this.$store.state.user.name
+      return this.$store.state.user?.name
     },
   },
 }

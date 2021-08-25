@@ -1,12 +1,13 @@
 <template>
   <div class="products-page-container mt-5 mb-10">
-    <v-card elevation="0" class="mb-5">
+    <v-card elevation="0">
       <v-text-field
         label="جستجوی محصول مورد نظر..."
-        outlined
+        solo
         v-model="search"
       ></v-text-field>
     </v-card>
+
     <v-row v-if="this.products.length > 0">
       <v-col
         v-for="product in products"
@@ -52,14 +53,26 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row v-else>
+    <v-row v-if="this.products.length === 0 && !this.search">
+      <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+        <div class="spinner center my-5">
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            color="primary"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row v-if="this.products.length === 0 && this.search">
       <v-col xl="12" lg="12" md="12" sm="12" cols="12">
         <v-card>
           <v-card-title>هیچ محصولی وجود ندارد!</v-card-title>
         </v-card>
       </v-col>
     </v-row>
-    <v-card elevation="0" class="mt-5">
+    <v-card elevation="0" class="mt-5" v-if="this.products.length > 0">
       <v-pagination v-model="page" :length="numberOfPages"></v-pagination>
     </v-card>
   </div>
@@ -74,6 +87,7 @@ export default {
       search: '',
       page: 1,
       numberOfPages: 0,
+      error: false,
     }
   },
   head() {
