@@ -103,7 +103,7 @@ export default {
     search() {
       this.$axios({
         method: 'GET',
-        url: `/products/search?search=${this.search}`,
+        url: `/products/search?search=${this.search}&page=${this.page}`,
       })
         .then(({ data }) => {
           this.products = data.products
