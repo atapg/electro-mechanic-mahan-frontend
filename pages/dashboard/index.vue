@@ -5,7 +5,7 @@
     </v-card>
     <v-spacer class="my-5"></v-spacer>
     <v-card>
-      <v-card-title>جدید ترین اخبار</v-card-title>
+      <v-card-title>داشبورد ادمینی الکترو مکانیک ماهان</v-card-title>
     </v-card>
   </div>
 </template>

@@ -87,6 +87,11 @@ export default {
           url: '/dashboard/products-list',
         },
         {
+          title: 'لیست درخواست ها',
+          icon: 'mdi-email-outline',
+          url: '/dashboard/emails-list',
+        },
+        {
           title: 'تنظیمات ادمین',
           icon: 'mdi-account-cog-outline',
           url: '/dashboard/admin-setting',

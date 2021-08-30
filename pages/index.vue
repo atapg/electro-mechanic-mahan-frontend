@@ -59,28 +59,35 @@
       <v-container>
         <v-row>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-            <v-card elevation="1" min-height="400" class="contact">
+            <v-card elevation="1" min-height="500" class="contact">
               <v-card-title> ارتباط با ما از طریق ایمیل </v-card-title>
               <v-card-text>
                 <v-text-field
                   color="primary"
                   label="ایمیل"
+                  v-model="email"
                   outlined
                 ></v-text-field>
-                <v-textarea color="primary" outlined no-resize>
+                <v-text-field
+                  color="primary"
+                  label="شماره تلفن"
+                  outlined
+                  v-model="phone"
+                ></v-text-field>
+                <v-textarea color="primary" v-model="text" outlined no-resize>
                   <template v-slot:label>
                     <div>متن</div>
                   </template>
                 </v-textarea>
                 <div style="text-align: left">
-                  <v-btn color="primary">ارسال</v-btn>
+                  <v-btn color="primary" @click="sendMessage">ارسال</v-btn>
                 </div>
               </v-card-text>
             </v-card>
           </v-col>
           <v-col xl="6" lg="6" md="6" sm="6" cols="12">
             <v-card class="contact" elevation="1">
-              <v-card elevation="1" min-height="400" class="contact">
+              <v-card elevation="1" min-height="500" class="contact">
                 <v-card-title>
                   ارتباط با ما از طریق شبکه های اجتماعی
                 </v-card-title>
@@ -111,17 +118,22 @@
 <script>
 import Hero from '/components/Hero.vue'
 import ProductSlider from '/components/ProductSlider.vue'
+import Cookies from 'js-cookie'
+import { Toast } from '~/plugins/sweetalertMixins'
 
 export default {
   layout: 'home',
   data() {
     return {
       products: [],
+      phone: '',
+      email: '',
+      text: '',
     }
   },
   head() {
     return {
-      title: 'الکترو مکانیک ماهان',
+      title: 'خانه',
     }
   },
   components: {
@@ -143,6 +155,42 @@ export default {
         this.products = data.products
       })
       .catch((err) => {})
+  },
+  methods: {
+    sendMessage() {
+      this.$swal({
+        title: 'آیا برای ارسال مطمئن هستید؟',
+        showCancelButton: true,
+        cancelButtonText: 'خیر',
+        confirmButtonText: 'بله',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.$axios({
+            method: 'POST',
+            url: `/messages/send`,
+            data: {
+              phone: this.phone,
+              email: this.email,
+              text: this.text,
+            },
+          })
+            .then(() => {
+              this.$swal({
+                icon: 'success',
+                title: 'موفق!',
+                ...Toast,
+              })
+            })
+            .catch((err) => {
+              this.$swal({
+                icon: 'error',
+                title: 'ناموفق - لطفا همه ی فیلد هارا پر کنید',
+                ...Toast,
+              })
+            })
+        }
+      })
+    },
   },
 }
 </script>
