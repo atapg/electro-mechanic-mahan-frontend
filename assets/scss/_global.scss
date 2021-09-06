@@ -10,6 +10,10 @@
   letter-spacing: 0 !important;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .overline {
   letter-spacing: 0 !important;
 }
@@ -44,3 +48,4 @@ strong {
 .flex {
   display: flex;
 }
+

@@ -133,6 +133,7 @@ export default {
           this.products = data.products
           this.page = data.page
           this.numberOfPages = data.numberOfPages
+          window.scrollTo(0, 0)
         })
         .catch((err) => {})
     },

@@ -10,7 +10,7 @@
       autoplayDirection="forward"
       class="carousel-container"
       :paginationEnabled="false"
-      :minSwipeDistance="1"
+      :scrollPerPage='false'
     >
       <slide
         v-for="product in products"

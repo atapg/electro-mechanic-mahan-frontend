@@ -73,5 +73,9 @@ export default {
   .items {
     justify-content: flex-start;
   }
+
+  i{
+    color: $primary;
+  }
 }
 </style>
